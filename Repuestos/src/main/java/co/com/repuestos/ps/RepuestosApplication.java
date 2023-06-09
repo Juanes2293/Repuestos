@@ -5,13 +5,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RepuestosApplication {
+	public class RepuestosApplication {
 
-	Repuesto a = new Repuesto();
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(RepuestosApplication.class, args);
 		System.out.println("Hola mundo");
+
 
 	}
 

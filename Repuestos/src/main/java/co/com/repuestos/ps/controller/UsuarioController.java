@@ -1,8 +1,9 @@
 package co.com.repuestos.ps.controller;
 
+
 import co.com.repuestos.ps.dto.ResponseErrorDTO;
-import co.com.repuestos.ps.modelo.Repuesto;
-import co.com.repuestos.ps.services.IRepuestoServices;
+import co.com.repuestos.ps.modelo.Usuario;
+import co.com.repuestos.ps.services.IUsuarioServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,21 +11,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/repuesto")
-public class RepuestoController {
-    @Autowired
-    IRepuestoServices iRepuestoServices;
 
-    private static final Logger logger = LoggerFactory.getLogger(RepuestoController.class);
+@RestController
+@RequestMapping("/usuario")
+public class UsuarioController {
+
+    @Autowired
+    IUsuarioServices iUsuarioServices;
+
+    private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
     @GetMapping("/v1/{id}")
-    public ResponseEntity<?> getRepuesto(@PathVariable("id") long id){
+    public ResponseEntity<?> getUsuario(@PathVariable("id") int id) {
         try {
-            Repuesto resultado = iRepuestoServices.consultar(id);
-              return ResponseEntity
-                      .status(HttpStatus.OK)
-                      .body(resultado);
+            Usuario resultado = iUsuarioServices.consultar(id);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(resultado);
         } catch (Exception e) {
             logger.error(e.getMessage());
             System.out.println(e.getMessage());
@@ -34,13 +37,12 @@ public class RepuestoController {
                             e.getCause() + "",
                             e.getMessage()));
         }
-
     }
 
     @PostMapping("/v1")
-    public ResponseEntity<?> saveRepuesto(@RequestBody Repuesto repuesto){
+    public ResponseEntity<?> saveUsuario(@RequestBody Usuario usuario) {
         try {
-            Repuesto resultado = iRepuestoServices.guardar(repuesto);
+            Usuario resultado = iUsuarioServices.guardar(usuario);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(resultado);
@@ -53,10 +55,11 @@ public class RepuestoController {
                             e.getMessage()));
         }
     }
+
     @PutMapping("/v1")
-    public ResponseEntity<?> updateRepuesto(@RequestBody Repuesto repuesto){
+    public ResponseEntity<?> updateUsuario(@RequestBody Usuario usuario) {
         try {
-            Repuesto resultado = iRepuestoServices.actualizar(repuesto);
+            Usuario resultado = iUsuarioServices.actualizar(usuario);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(resultado);
@@ -69,10 +72,11 @@ public class RepuestoController {
                             e.getMessage()));
         }
     }
+
     @DeleteMapping("/v1")
-    public ResponseEntity<?> deleteRepuesto(@PathVariable long id){
+    public ResponseEntity<?> deleteUsuario(@PathVariable int id) {
         try {
-            Repuesto resultado = iRepuestoServices.borrar(id);
+            Usuario resultado = iUsuarioServices.borrar(id);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(resultado);
@@ -85,7 +89,4 @@ public class RepuestoController {
                             e.getMessage()));
         }
     }
-
-
-
 }
