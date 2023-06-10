@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface UsuarioRepository {
-    public Usuario findById(int id);
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
 }

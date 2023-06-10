@@ -22,7 +22,7 @@ public class UsuarioController {
     private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
     @GetMapping("/v1/{id}")
-    public ResponseEntity<?> getUsuario(@PathVariable("id") int id) {
+    public ResponseEntity<?> getUsuario(@PathVariable("id") Long id) {
         try {
             Usuario resultado = iUsuarioServices.consultar(id);
             return ResponseEntity
@@ -74,7 +74,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/v1")
-    public ResponseEntity<?> deleteUsuario(@PathVariable int id) {
+    public ResponseEntity<?> deleteUsuario(@PathVariable Long id) {
         try {
             Usuario resultado = iUsuarioServices.borrar(id);
             return ResponseEntity

@@ -3,7 +3,6 @@ package co.com.repuestos.ps.modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.Date;
 @Table
@@ -36,16 +35,9 @@ public class Repuesto {
     private double precio;
 
     //Fechas con date
-   private Date fechaInventario;
-
-   private boolean venceElProducto;
-
-   public void setId(Long id) {
-       this.id = id;
-   }
-
-   public Long getId() {
-       return id;
-   }
+    @Column(name = "fechainventario", nullable = true)
+    private Date fechaInventario;
+    @Column(name = "venceelproducto", nullable = true)
+    private boolean venceElProducto;
 
 }

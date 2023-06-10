@@ -16,7 +16,7 @@ public class Usuario {
     }
     @Id
     @Column(name = "ID", nullable = false)
-    private int id;
+    private Long id;
     @Column(name = "nombre", nullable = false)
     private String nombre;
     @Column(name = "apellido", nullable = false)
@@ -25,15 +25,7 @@ public class Usuario {
     private String email;
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
-    @Column(name = "color", nullable = true)
+    @Column(name = "fecharegistro", nullable = true)
     private Date fechaRegistro;
 
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
 }

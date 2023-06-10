@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RepuestoServices implements IRepuestoServices {
@@ -23,7 +24,12 @@ public class RepuestoServices implements IRepuestoServices {
 
         }
 
-        return repuestoRepository.findById(id);
+        Optional<Repuesto> repuestoOpt = repuestoRepository.findById(id);
+
+        if(!repuestoOpt.isPresent()){
+            throw new Exception("No se encontro el Repuesto");
+        }
+        return repuestoOpt.get();
     }
 
     public Repuesto guardar(Repuesto repuesto) throws Exception{
