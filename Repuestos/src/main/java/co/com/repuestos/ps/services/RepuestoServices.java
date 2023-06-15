@@ -41,12 +41,42 @@ public class RepuestoServices implements IRepuestoServices {
             throw new Exception("El modelo no debe estar vacio");
         }
 
-        return new Repuesto();
+        if (repuesto.getMarca()== null || repuesto.getMarca().equals("")){
+            throw new Exception("La marca no debe estar vacia");
+        }
+
+        if (repuesto.getFechaInventario()== null || repuesto.getFechaInventario().equals("")){
+            throw new Exception("La fecha de inventario no debe estar vacia");
+        }
+
+        return repuestoRepository.save(repuesto);
     }
 
     @Override
-    public Repuesto actualizar (Repuesto persona) throws Exception{
-        return null;
+    public Repuesto actualizar (Repuesto repuesto) throws Exception{
+        Repuesto resultado = consultar(repuesto.getId());
+
+        if (repuesto.getModelo()!= null){
+            resultado.setModelo(repuesto.getModelo());
+        }
+
+        if (repuesto.getMarca()!= null){
+            resultado.setMarca(repuesto.getMarca());
+        }
+
+        if(repuesto.getColor()!= 0){
+            resultado.setColor(repuesto.getColor());
+        }
+
+        if(repuesto.getNombre()!= null){
+            resultado.setNombre(repuesto.getNombre());
+        }
+
+        if (repuesto.getFechaInventario()!= null){
+            resultado.setFechaInventario(repuesto.getFechaInventario());
+        }
+
+        return repuestoRepository.save(resultado);
     }
 
     @Override
@@ -56,7 +86,7 @@ public class RepuestoServices implements IRepuestoServices {
 
     @Override
     public List<Repuesto> buscarTodos() throws Exception{
-        return null;
+        return repuestoRepository.findAll();
     }
 
 }

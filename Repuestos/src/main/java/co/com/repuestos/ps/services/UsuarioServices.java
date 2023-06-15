@@ -43,12 +43,33 @@ public class UsuarioServices implements IUsuarioServices {
         if(usuario.getContrasena()== null || usuario.getContrasena().equals("")){
             throw new Exception("La contraseña no debe estar vacia");
         }
-        return new Usuario();
+
+        return usuarioRepository.save(usuario);
     }
 
     @Override
-    public Usuario actualizar(Usuario persona) throws Exception {
-        return null;
+    public Usuario actualizar(Usuario usuario) throws Exception {
+        Usuario resultado = consultar(usuario.getId());
+
+        if (usuario.getId()!= null){
+            resultado.setId(usuario.getId());
+        }
+        if (usuario.getNombre()!= null){
+            resultado.setNombre(usuario.getNombre());
+        }
+        if (usuario.getApellido()!= null){
+            resultado.setApellido(usuario.getApellido());
+        }
+        if (usuario.getContrasena()!= null){
+            resultado.setContrasena(usuario.getContrasena());
+        }
+        if (usuario.getEmail()!= null){
+            resultado.setEmail(usuario.getEmail());
+        }
+        if (usuario.getFechaRegistro()!= null){
+            resultado.setFechaRegistro(usuario.getFechaRegistro());
+        }
+        return usuarioRepository.save(usuario);
     }
 
     @Override
@@ -58,6 +79,6 @@ public class UsuarioServices implements IUsuarioServices {
 
     @Override
     public List<Usuario> buscarTodos() throws Exception {
-        return null;
+        return usuarioRepository.findAll();
     }
 }
